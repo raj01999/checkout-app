@@ -1,0 +1,23 @@
+<nav>
+  <ul>
+    <li class="menu-container">
+      <div class="menu"></div>
+      <div class="menu"></div>
+      <div class="menu"></div>
+    </li>
+    <li class="cart" (click)="onCartChange()">
+      <img src="../../../assets/shopping-cart.png" alt="shopping-cart" />
+    </li>
+    <app-cart-page
+      *ngIf="cartOpen"
+      (onCartPageChange)="onCartChange()"
+    ></app-cart-page>
+  </ul>
+  <ul>
+    <li><h1>powdur</h1></li>
+  </ul>
+  <ul>
+    <li><img src="../../../assets/user.png" alt="user" /></li>
+    <li><img src="../../../assets/search.png" alt="search" /></li>
+  </ul>
+</nav>

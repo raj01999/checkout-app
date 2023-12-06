@@ -1,0 +1,35 @@
+<div class="container" style="color: black">
+  <div class="header">
+    <ul style="font-weight: bold; color: black">
+      <li style="cursor: pointer" (click)="onCartChange()">&#10005;</li>
+      <li>Your Bag</li>
+    </ul>
+    <p style="color: gray; margin-right: 12px">{{ totalItme }} Items</p>
+  </div>
+
+  <div class="body">
+    <div class="product-parent" *ngFor="let item of cartItems">
+      <img src="{{ item?.image }}" alt="image" />
+      <p>{{ item.name }}</p>
+      <input
+        type="number"
+        [value]="item.quantity"
+        class="product-quantity"
+        min="1"
+        (change)="onChangeQuantity($event, item.id)"
+      />
+      <p class="price">
+        {{ item.quantity }} &#10005; {{ item.price }} = ₹
+        {{ item.price * item.quantity }}
+      </p>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="total-price">
+      <p>Estimated Total</p>
+      <p>₹ {{ totalPrice }}</p>
+    </div>
+    <app-stripe-payment [cartItems]="cartItems"></app-stripe-payment>
+  </div>
+</div>
