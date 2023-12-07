@@ -26,12 +26,13 @@ export class StripePaymentComponent {
     this.cartItems.forEach((item: any) => {
       lineItems.push({ price: item.default_price, quantity: item.quantity });
     });
+    let redirectUrl = window.location.href;
     try {
       const session = await this.stripe.redirectToCheckout({
         lineItems: lineItems,
         mode: 'payment',
-        successUrl: 'http://localhost:4200/success', // Replace with your success URL
-        cancelUrl: 'http://localhost:4200/failed', // Replace with your cancel URL
+        successUrl: redirectUrl + 'success', // Replace with your success URL
+        cancelUrl: redirectUrl + 'failed', // Replace with your cancel URL
       });
       console.log('session: ', session);
     } catch (err) {
